@@ -6,10 +6,10 @@
 const provider = new ethers.providers.JsonRpcProvider("http://localhost:8545");
 var defaultAccount;
 
-const exchange_name = '';             // TODO: fill in the name of your exchange
+const exchange_name = 'MasterGroup4';             // TODO: fill in the name of your exchange
 
-const token_name = '';                // TODO: replace with name of your token
-const token_symbol = '';              // TODO: replace with symbol for your token
+const token_name = 'BGroupCoin';                // TODO: replace with name of your token
+const token_symbol = 'BGF';              // TODO: replace with symbol for your token
 
 
 // =============================================================================
@@ -19,13 +19,566 @@ const token_symbol = '';              // TODO: replace with symbol for your toke
 // TODO: Paste your token and exchange contract ABIs in abi.js!
 
 // TODO: Paste your token contract address here: 
-const token_address = '';      
-const token_abi = [];             
+const token_address = '0x5FbDB2315678afecb367f032d93F642f64180aa3';      
+const token_abi = [
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "Approval",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "value",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      }
+    ],
+    "name": "allowance",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "approve",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "decimals",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "",
+        "type": "uint8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "subtractedValue",
+        "type": "uint256"
+      }
+    ],
+    "name": "decreaseAllowance",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "disable_mint",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "spender",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "addedValue",
+        "type": "uint256"
+      }
+    ],
+    "name": "increaseAllowance",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "mint",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "name",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "symbol",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "transfer",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "transferFrom",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+];             
 const token_contract = new ethers.Contract(token_address, token_abi, provider.getSigner());
 
 // TODO: Paste your exchange address here
-const exchange_abi = [];
-const exchange_address = '';                
+const exchange_abi = [
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "max_exchange_rate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "min_exchange_rate",
+        "type": "uint256"
+      }
+    ],
+    "name": "addLiquidity",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amountTokens",
+        "type": "uint256"
+      }
+    ],
+    "name": "createPool",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "exchange_name",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getSwapFee",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "max_exchange_rate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "min_exchange_rate",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeAllLiquidity",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amountETH",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "max_exchange_rate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "min_exchange_rate",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeLiquidity",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "max_exchange_rate",
+        "type": "uint256"
+      }
+    ],
+    "name": "swapETHForTokens",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amountTokens",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "max_exchange_rate",
+        "type": "uint256"
+      }
+    ],
+    "name": "swapTokensForETH",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "token",
+    "outputs": [
+      {
+        "internalType": "contract Token",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+];
+const exchange_address = '0x0165878A594ca255338adfa4d48449f69242Eb8F';                
 const exchange_contract = new ethers.Contract(exchange_address, exchange_abi, provider.getSigner());
 
 
@@ -73,33 +626,59 @@ async function getPoolState() {
 
 // Note: maxSlippagePct will be passed in as an int out of 100. 
 // Be sure to divide by 100 for your calculations.
+async function getRates(maxSlippagePct){
+  let poolRate = (await getPoolState())["eth_token_rate"];
+  console.log(poolRate);
+  let max_exchange_rate = Math.floor(poolRate * (1 + maxSlippagePct / 100.0));
+  let min_exchange_rate = Math.floor(poolRate * (1 - maxSlippagePct / 100.0));
+  return { max_exchange_rate, min_exchange_rate };
+}
 
 /*** ADD LIQUIDITY ***/
 async function addLiquidity(amountEth, maxSlippagePct) {
-    /** TODO: ADD YOUR CODE HERE **/
-   
+  if (amountEth < 0){
+    console.log("Error: Cannot add negative liquidity");
+    return;
+  }
+  let rates = await getRates(maxSlippagePct);
+  await token_contract.connect(provider.getSigner(defaultAccount)).approve(exchange_address, Math.floor(rates.max_exchange_rate * amountEth));
+  await exchange_contract.connect(provider.getSigner(defaultAccount)).addLiquidity(rates.max_exchange_rate, rates.min_exchange_rate, {value: ethers.utils.parseUnits(String(amountEth), "wei") });
 }
 
 /*** REMOVE LIQUIDITY ***/
 async function removeLiquidity(amountEth, maxSlippagePct) {
-    /** TODO: ADD YOUR CODE HERE **/
-    
+  if (amountEth < 0){
+    console.log("Error: Cannot remove negative liquidity");
+    return;
+  }
+  let rates = await getRates(maxSlippagePct);
+  await exchange_contract.connect(provider.getSigner(defaultAccount)).removeLiquidity(amountEth, rates.max_exchange_rate, rates.min_exchange_rate);
 }
 
 async function removeAllLiquidity(maxSlippagePct) {
-    /** TODO: ADD YOUR CODE HERE **/
-   
+  let rates = await getRates(maxSlippagePct);
+  await exchange_contract.connect(provider.getSigner(defaultAccount)).removeAllLiquidity(rates.max_exchange_rate, rates.min_exchange_rate);
 }
 
 /*** SWAP ***/
 async function swapTokensForETH(amountToken, maxSlippagePct) {
-    /** TODO: ADD YOUR CODE HERE **/
-   
+  if (amountToken < 0){
+    console.log("Error: Cannot swap negative tokens");
+    return;
+  }
+  let rates = await getRates(maxSlippagePct);
+  await token_contract.connect(provider.getSigner(defaultAccount)).approve(exchange_address, amountToken);
+  console.log(amountToken);
+  await exchange_contract.connect(provider.getSigner(defaultAccount)).swapTokensForETH(amountToken, rates.max_exchange_rate);
 }
 
 async function swapETHForTokens(amountEth, maxSlippagePct) {
-    /** TODO: ADD YOUR CODE HERE **/
-   
+  if (amountEth < 0){
+    console.log("Error: Cannot swap negative eth");
+    return;
+  }
+  let rates = await getRates(maxSlippagePct);
+  await exchange_contract.connect(provider.getSigner(defaultAccount)).swapETHForTokens(rates.max_exchange_rate, {value: ethers.utils.parseUnits(String(amountEth), "wei") });
 }
 
 // =============================================================================
@@ -325,6 +904,6 @@ const sanityCheck = async function() {
 // Sleep 3s to ensure init() finishes before sanityCheck() runs on first load.
 // If you run into sanityCheck() errors due to init() not finishing, please extend the sleep time.
 
-// setTimeout(function () {
-//   sanityCheck();
-// }, 3000);
+setTimeout(function () {
+  sanityCheck();
+}, 3000);

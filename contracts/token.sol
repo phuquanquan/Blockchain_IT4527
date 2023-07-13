@@ -7,8 +7,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  
 // Your token contract
 contract Token is Ownable, ERC20 {
-    string private constant _symbol = '';                 // TODO: Give your token a symbol (all caps!)
-    string private constant _name = '';                   // TODO: Give your token a name
+    string private constant _symbol = 'BGF';                 // TODO: Give your token a symbol (all caps!)
+    string private constant _name = 'BGroupCoin';                   // TODO: Give your token a name
 
     constructor() ERC20(_name, _symbol) {}
 
@@ -19,12 +19,16 @@ contract Token is Ownable, ERC20 {
     // Function _mint: Create more of your tokens.
     // You can change the inputs, or the scope of your function, as needed.
     // Do not remove the AdminOnly modifier!
+
+    bool allowMinting = true;
+
     function mint(uint amount) 
         public 
         onlyOwner
     {
-        /******* TODO: Implement this function *******/
-
+        if (allowMinting){
+          _mint(msg.sender, amount);
+        }
     }
 
     // Function _disable_mint: Disable future minting of your token.
@@ -34,7 +38,6 @@ contract Token is Ownable, ERC20 {
         public
         onlyOwner
     {
-        /******* TODO: Implement this function *******/
-
+        allowMinting = false;
     }
 }
