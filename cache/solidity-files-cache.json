@@ -40,8 +40,8 @@
       ]
     },
     "F:\\coder\\blockchain\\Blockchain_IT4527_Project2\\contracts\\token.sol": {
-      "lastModificationDate": 1689253338609,
-      "contentHash": "1c9afdfb5f2a7c1349d96e47dc80aa1b",
+      "lastModificationDate": 1689275663985,
+      "contentHash": "7a33ab4d71a0ba1a9bcc4c3a41b7eec0",
       "sourceName": "contracts/token.sol",
       "solcConfig": {
         "version": "0.8.17",

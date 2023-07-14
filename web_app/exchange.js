@@ -8,8 +8,8 @@ var defaultAccount;
 
 const exchange_name = 'MasterGroup4';             // TODO: fill in the name of your exchange
 
-const token_name = 'BGroupCoin';                // TODO: replace with name of your token
-const token_symbol = 'BGF';              // TODO: replace with symbol for your token
+const token_name = 'DailyCoin';                // TODO: replace with name of your token
+const token_symbol = 'DAI';              // TODO: replace with symbol for your token
 
 
 // =============================================================================
@@ -578,7 +578,7 @@ const exchange_abi = [
     "type": "function"
   }
 ];
-const exchange_address = '0x0165878A594ca255338adfa4d48449f69242Eb8F';                
+const exchange_address = '0x0c269682E71B2Dc923641B948F63b85CFb31E95b';                
 const exchange_contract = new ethers.Contract(exchange_address, exchange_abi, provider.getSigner());
 
 
@@ -904,6 +904,6 @@ const sanityCheck = async function() {
 // Sleep 3s to ensure init() finishes before sanityCheck() runs on first load.
 // If you run into sanityCheck() errors due to init() not finishing, please extend the sleep time.
 
-setTimeout(function () {
-  sanityCheck();
-}, 3000);
+// setTimeout(function () {
+//   sanityCheck();
+// }, 3000);
